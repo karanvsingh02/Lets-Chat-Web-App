@@ -1,11 +1,12 @@
 function addUser(){
-    user_name = document.getElementById("Username").value;
-console.log("User is: " + user_name);
-    localStorage.setItem("user_name" , user_name);
+var user_name = document.getElementById("Username").value;
+console.log("User name is: " + user_name);
+localStorage.setItem("user_name" , user_name);
+
 if (user_name == null){
-    console.log("please enter a username")
+    window.location = "Login_Page.html";
 }
-    else {
-        window.location = "kwitter_room.html";
+else {
+        window.location = "index.html";
 }
 }
