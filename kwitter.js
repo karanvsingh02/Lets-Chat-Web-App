@@ -4,9 +4,9 @@ console.log("User name is: " + user_name);
 localStorage.setItem("user_name" , user_name);
 
 if (user_name == null){
-    window.location = "Login_Page.html";
+    window.location = "index.html";
 }
 else {
-        window.location = "index.html";
+        window.location = "kwitter_room.html";
 }
 }

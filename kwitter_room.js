@@ -48,5 +48,5 @@ function redirectToRoomName(name){
 function logout(){
   localStorage.removeItem("user_name");
   localStorage.removeItem("room_name");
-  window.location = "Login_Page.html";
+  window.location = "index.html";
 }
