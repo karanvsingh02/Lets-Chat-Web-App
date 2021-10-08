@@ -18,27 +18,25 @@
 </head>
 <body>
 <div class="container">
-<button id="logout" onclick ="logout();" class="glyphicon glyphicon-log-out btn btn-danger"> Logout</button>
+<button id="logout" onclick ="logout();" class="glyphicon glyphicon-log-out btn btn-danger">Logout</button>
 	<center>
 		<h1 class="header">	
-			Kwitter	Chatting Interface
+			Kwitter	
 			<sup>
 				<img src="m2.png">
 			</sup>
 		</h1>
-		<h3 id="user_label" class="color_white"></h3>
+		<h3 id="user_name" class="color_white"></h3>
 		<div class="form-group input_div_room_page">
-			<label>Add A Room:</label>
+			<label>#Add Room:</label>
 
-			<input type="text" id="room_name" class="form-control" placeholder="Enter your room name">
+			<input type="text" id="room_name" class="form-control" placeholder="Room Name"
 
 		</div>
-		<br>
-		<button class="btn btn-success" onclick="addRoom();">Add Room</button>
-		<br><br>
-		<h3 class="color_white">Find all the recent TRENDING ROOMS.</h3>
+		<button class="btn btn-success" onclick="addRoom();">#Add Room</button>
+		<h3 class="color_white">#TRENDINGROOMS</h3>
 
-		<div id="listofrooms"></div>
+		<div id="output"></div>
 	
 	</center>
 </div>

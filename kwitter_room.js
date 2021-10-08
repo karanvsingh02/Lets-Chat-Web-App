@@ -1,39 +1,41 @@
+//ADD YOUR FIREBASE LINKS HERE
+ // Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyBLM7E8yXne5mK4oiwr6s9Z4RHl7d2rr0k",
+  authDomain: "kwitter-project-e6708.firebaseapp.com",
+  databaseURL: "https://kwitter-project-e6708-default-rtdb.firebaseio.com",
+  projectId: "kwitter-project-e6708",
+  storageBucket: "kwitter-project-e6708.appspot.com",
+  messagingSenderId: "620258256746",
+  appId: "1:620258256746:web:d1abb640fbebff0010e713"
+};
 
-  user_name = localStorage.getItem("user_name");
-  document.getElementById("user_label").innerHTML = "Welcome " + user_name + "!";
-
-    // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDhuETb4xEX5yu_l35N_5-W4vqzW9ElEZg",
-    authDomain: "classtest-96205.firebaseapp.com",
-    databaseURL: "https://classtest-96205-default-rtdb.firebaseio.com",
-    projectId: "classtest-96205",
-    storageBucket: "classtest-96205.appspot.com",
-    messagingSenderId: "11590433415",
-    appId: "1:11590433415:web:e5fe99743d5218a3dcd622"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
   function addRoom(){
     room_name = document.getElementById("room_name").value;
     
     firebase.database().ref("/").child(room_name).update({
-      purpose:"add a new room name"
+      purpose:"adding room name"
     });
     
     localStorage.setItem("room_name" , room_name);
+
     window.location = "kwitter_page.html";
   }
 
-function getData() {
-  firebase.database().ref("/").on('value', function(snapshot){
-    document.getElementById("listofrooms").innerHTML = "";
-      snapshot.forEach(function(childSnapshot) 
-        {childKey  = childSnapshot.key;
-          Room_names = childKey;
-      //Start code
+  user_name = localStorage.getItem("user_name");
+  document.getElementById("user_name").innerHTML = "Welcome " + user_name + " !";
 
+
+
+function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
+       Room_names = childKey;
+      //Start code
+      console.log("Room Name - " + Room_names);
+      row = "<div class='room_name' id="+Room_names+" onclick='redirectToRoomName(this.id)'>#"+Room_names+"</div><hr>";
+      document.getElementById("output").innerHTML += row;
       //End code
       });});}
 getData();
@@ -48,5 +50,5 @@ function redirectToRoomName(name){
 function logout(){
   localStorage.removeItem("user_name");
   localStorage.removeItem("room_name");
-  window.location = "index.html";
+  window.location = "kwitter.html";
 }

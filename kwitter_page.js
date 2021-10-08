@@ -1,22 +1,21 @@
-room_name = localStorage.getItem("room_name");
-document.getElementById("room_label").innerHTML = "You are in Room " + room_name + "!";
+//YOUR FIREBASE LINKS
 // Your web app's Firebase configuration
 var firebaseConfig = {
-      apiKey: "AIzaSyDhuETb4xEX5yu_l35N_5-W4vqzW9ElEZg",
-      authDomain: "classtest-96205.firebaseapp.com",
-      databaseURL: "https://classtest-96205-default-rtdb.firebaseio.com",
-      projectId: "classtest-96205",
-      storageBucket: "classtest-96205.appspot.com",
-      messagingSenderId: "11590433415",
-      appId: "1:11590433415:web:e5fe99743d5218a3dcd622"
+      apiKey: "AIzaSyBLM7E8yXne5mK4oiwr6s9Z4RHl7d2rr0k",
+      authDomain: "kwitter-project-e6708.firebaseapp.com",
+      databaseURL: "https://kwitter-project-e6708-default-rtdb.firebaseio.com",
+      projectId: "kwitter-project-e6708",
+      storageBucket: "kwitter-project-e6708.appspot.com",
+      messagingSenderId: "620258256746",
+      appId: "1:620258256746:web:d1abb640fbebff0010e713"
     };
     
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
-
 user_name = localStorage.getItem("user_name");
 room_name = localStorage.getItem("room_name");
+
 
 function send(){
 
@@ -37,15 +36,39 @@ function getData() { firebase.database().ref("/"+room_name).on('value', function
          firebase_message_id = childKey;
          message_data = childData;
 //Start code
-
+      console.log(firebase_message_id);
+      console.log(message_data);
+      name = message_data['name'];
+      message = message_data['message'];
+      like = message_data['like'];
+      name_with_tag = "<h4>" + name + "<img class = 'user_tick' src = 'tick.png'></h4>";
+      message_with_tag = "<h4 class = 'message_h4'>" + message + "</h4>";
+      console.log("Before calling update function");
+      like_button = "<button class = 'btn btn-warning' id='" + firebase_message_id + "' value = " + like + " onclick = 'updateLike(this.id)'>";
+      span_with_tag = "<span class = 'glyphicon glyphicon-thumbs-up'> Like: " + like + "</span></button><hr>";
+      console.log("After calling update function");
+      row = name_with_tag + message_with_tag + like_button + span_with_tag;
+      document.getElementById("output").innerHTML += row;
 //End code
       } });  }); }
 getData();
 
+function updateLike(message_id){
+      console.log("Clicked on like button - " + message_id);
+      button_id = message_id;
+      like = document.getElementById(button_id).value;
+      updated_likes = Number(like) + 1;
+      console.log("Updated number is : " + updated_likes);
+
+      firebase.database().ref(room_name).child(message_id).update({
+            like : updated_likes
+      });
+}
+
 function logout(){
       localStorage.removeItem("user_name");
       localStorage.removeItem("room_name");
-      window.location = "index.html";
-    }
+      window.location.replace("index.html")
+}
 
 
